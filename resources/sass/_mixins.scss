@@ -1,0 +1,8 @@
+@mixin generate-height-classes {
+  @each $height in 30, 60, 90, 120, 180, 240 {
+    $new-height: $height * 4;
+    .height-#{$height} {
+      height: #{$new-height}px;
+    }
+  }
+}

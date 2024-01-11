@@ -1,0 +1,111 @@
+.timebox-date-picker {
+    // margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.react-datepicker__triangle {
+    display: none;
+}
+
+.react-datepicker {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 0;
+}
+.react-datepicker,
+.react-datepicker-wrapper {
+    border: none !important;
+}
+.react-datepicker-popper {
+    // transform:  translate3d(10%, 34px, 0px);
+    z-index: 9999; /* Set the z-index if the calendar is appearing behind other elements */
+    text-align: center;
+    margin: auto;
+    margin-top: 1%;
+    align-items: center;
+
+    // Default styles for mobile
+    margin-left: -19%;
+
+    // Styles for tablet
+    @media (min-width: 768px) {
+        margin-left: -8%;
+    }
+
+    // Styles for desktop
+    @media (min-width: 1024px) {
+        margin-left: -5%;
+    }
+}
+
+// .react-datepicker__month-container {
+//     --bs-bg-opacity: 1;
+//     background-color: rgba(
+//         var(--bs-body-bg-rgb),
+//         var(--bs-bg-opacity)
+//     ) !important;
+//     align-items: center !important;
+// }
+
+.react-datepicker__header {
+    // Styles for the header section (month and year)
+     font: normal 125%/1.4 "Titillium Web", "sans-serif", "Helvetica Neue Light",
+        "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    box-sizing: border-box;
+    --bs-bg-opacity: 1;
+    background-color: var(--bs-light-bg-subtle) !important;
+
+
+}
+.react-datepicker__month {
+    border-radius: 0;
+    box-shadow: var(--bs-box-shadow-sm) !important;
+}
+.react-datepicker__month-container {
+    --bs-bg-opacity: 1;
+    background-color: rgba(
+        var(--bs-body-bg-rgb),
+        var(--bs-bg-opacity)
+    ) !important;
+    align-items: center !important;
+}
+
+.react-datepicker__day-names {
+    // Styles for the day names (Mon, Tue, etc.)
+    width: 100%;
+}
+
+.react-datepicker__day {
+    // Styles for the day cells
+    color: #333;
+    font: normal 125%/1.4 "Titillium Web", "sans-serif", "Helvetica Neue Light",
+        "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    box-sizing: border-box;
+    border-radius: 0;
+    background-color: var(--bs-light-bg-subtle) !important;
+
+}
+
+.react-datepicker__day--selected {
+    // Styles for the selected day
+    box-sizing: border-box;
+    border-radius: 0;
+    background-color: #333;
+}
+
+.react-datepicker__day--today {
+    // Styles for today's date
+    background-color: var(--bs-primary-bg-subtle) !important;
+    border-radius: 0;
+    border-color: white;
+}
+
+.react-datepicker__navigation {
+    // Styles for the previous/next month buttons
+}
+.react-datepicker__day--selected, .react-datepicker__day--today {
+    background-color: var(--bs-success-bg-subtle) !important;
+    border-radius: 0;
+}

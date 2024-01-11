@@ -1,0 +1,14 @@
+@media (max-width: 768px) {
+    textarea, input[type="datetime-local"] {
+        font-size: 1.2em; // Increase the font size
+    }
+}
+
+textarea:invalid {
+    border-color:  var(--bs-danger-bg) !important;
+
+}
+
+.textarea-full-width {
+    width: 100% !important;
+}

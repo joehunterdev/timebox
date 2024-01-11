@@ -1,0 +1,30 @@
+// Fonts
+@import "fonts";
+
+// Variables
+@import "variables";
+@import "mixins";
+
+@import "layout";
+
+@import "components/boxes";
+@import "components/icons";
+@import "components/form";
+
+@import "components/timeline";
+
+@import 'react-datepicker/dist/react-datepicker';
+
+@import "components/timeline";
+
+// Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+@import "components/datepicker";
+
+// @import "~@fortawesome/fontawesome-free/scss/fontawesome";
+// @import "~@fortawesome/fontawesome-free/scss/brands";
+// @import "~@fortawesome/fontawesome-free/scss/solid";
+// @import "~@fortawesome/fontawesome-free/scss/regular";
+
+
