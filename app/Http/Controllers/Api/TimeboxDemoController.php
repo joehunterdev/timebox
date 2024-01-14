@@ -34,11 +34,13 @@ class TimeboxDemoController extends Controller
         $start = \Carbon\Carbon::parse($start)->setTime(0, 0, 0);
         $timeFormat = 'Y-m-d\TH:i';
         $timeboxes = [
-            ['id' => 1, 'text' => 'Meditate', 'duration' => 30, "status" => "done", "start" => $start->copy()->setTime(date("H"), 00, 0)->format($timeFormat)],
-            ['id' =>  2, 'text' => 'Typescript study', 'duration' => 60, "status" => "todo", "start" => $start->copy()->setTime(date("H"), 30, 0)->format($timeFormat)],
-            ['id' =>  3, 'text' => 'Apply for jobs', 'duration' => 90, "status" => "todo", "start" => $start->copy()->setTime(date("H") + 2, 30, 0)->format($timeFormat)],
-            ['id' =>  4, 'text' => 'Excercise', 'duration' => 30, "status" => "todo", "start" => $start->copy()->setTime(date("H") + 4, 30, 0)->format($timeFormat)],
-            ['id' =>  5, 'text' => 'Dinner', 'duration' => 30, "status" => "todo", "start" => $start->copy()->setTime(date("H") + 7, 30, 0)->format($timeFormat)],
+            ['id' =>  1, 'text' => 'Meditate', 'duration' => 30, "status" => "done", "start" => $start->copy()->setTime(date("H"), 0, 0)->format($timeFormat)],
+            ['id' =>  2, 'text' => 'Study: Js Patterns', 'duration' => 60, "status" => "todo", "start" => $start->copy()->setTime(date("H")+1, 30, 0)->format($timeFormat)],
+            ['id' =>  4, 'text' => 'Excercise', 'duration' => 30, "status" => "done", "start" => $start->copy()->setTime(date("H") + 2, 30, 0)->format($timeFormat)],
+            ['id' =>  5, 'text' => 'Make Dinner', 'duration' => 30, "status" => "doing", "start" => $start->copy()->setTime(date("H") + 4, 30, 0)->format($timeFormat)],
+            ['id' =>  6, 'text' => 'Deep Work', 'duration' => 180, "status" => "doing", "start" => $start->copy()->setTime(date("H") + 5, 30, 0)->format($timeFormat)],
+             ['id' =>  3, 'text' =>  'Meditate', 'duration' => 30, "status" => "todo", "start" => $start->copy()->setTime(date("H")+7, 00, 0)->format($timeFormat)]
+
         ];
 
         session(['timeboxes' => $timeboxes]);
@@ -68,7 +70,7 @@ class TimeboxDemoController extends Controller
             // Mock the Timebox creation
             $timebox = [
                 'id' => $nextId,
-                'text' =>"test",
+                'text' =>$request->input('duration'),
                 'duration' => $request->input('duration'),
                 'status' => $request->input('status'),
                 'start' => $request->input('start'),

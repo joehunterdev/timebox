@@ -5,7 +5,8 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Timebox;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -13,12 +14,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Timebox::factory()->count(5)->create();
-        // \App\Models\User::factory(10)->create();
+        // Create an admin user
+        User::create([
+            'name' => 'Admin',
+            'email' => 'me@joehunter.dev',
+            'password' => Hash::make("t3st"), 
+         ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // Create an user
+        User::create([
+            'name' => 'Joey',
+            'email' => 'joe.hunter.dev@gmail.com',
+            'password' => Hash::make("t3st2"), 
+         ]);
+        Timebox::factory()->count(5)->create();
+ 
     }
 }

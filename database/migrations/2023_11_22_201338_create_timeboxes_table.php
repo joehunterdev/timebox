@@ -22,9 +22,9 @@ return new class extends Migration
             $table->boolean('completed')->default(false);
             $table->timestamps();
             $table->softDeletes();
-            //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            //$table->unsignedBigInteger('category_id');
-        });
+            $table->unsignedBigInteger('user_id');  
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+         });
     }
 
     /**

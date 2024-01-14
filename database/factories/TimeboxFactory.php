@@ -35,7 +35,8 @@ class TimeboxFactory extends Factory
             'duration' => $this->faker->randomElement([30]), //, 60, 90
             'status' => $this->faker->randomElement(['todo',  'done']),
             'completed' => $this->faker->boolean,
-            'end' => $endString
+            'end' => $endString,
+            'user_id' => 1
         ];
     }
 }
