@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,11 +12,15 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/static', function () {
-    return view('static');
-});
-
-Route::get('/', function () {
+//
+//To enable the client side routing
+Route::get('/{any}', function () {
     return view('app');
-});
+})->where('any', '.*');
+
+//Static Mockup
+// Route::get('/static', function () {
+//     return view('static');
+// });
+
+ 

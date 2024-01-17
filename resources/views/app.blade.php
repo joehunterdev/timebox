@@ -1,3 +1,5 @@
+<!doctype html>
+
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -26,6 +28,6 @@
 <body>
     <div id="root"></div>
     <script src="{{ mix('js/App.js') }}"></script>
-    📅📦 Laravel and React based todo app, inspired by Steve Jobs' favorite method of focus and prioritization. 
 </body>
+
 </html>

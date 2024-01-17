@@ -1,45 +1,36 @@
 import { getCsrfToken } from '../../utils/http-utils';
 import { boxActions } from './box-slice';
 const API_URL = '/api/timeboxes/';
-
+//Thunk Life
 export const readBoxData = (date) => {
 
+    const token = localStorage.getItem('token');
 
     return async (dispatch) => {
 
         const fetchData = async () => {
-             const response = await fetch(API_URL + date, {
+            const response = await fetch(API_URL + date, {
                 method: 'GET',
                 headers: {
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': getCsrfToken(),
+                    'Authorization': `Bearer ${token}`
                 },
             });
-        
+
             if (response.status !== 200) {
                 throw new Error('Could not fetch box data!');
             }
-        
+
             const data = await response.json();
-        
+
             return data;
         };
-        // const fetchData = async () => {
-        //      const response = await fetch(API_URL + date);
-        //     if (response.status !== 200) {
-
-        //         throw new Error('Could not fetch box data!');
-        //     }
-
-        //     const data = await response.json();
-
-        //     return data;
-        // };
 
         try {
 
             const boxData = await fetchData();
-             dispatch(boxActions.adjustStartTimes());
+            dispatch(boxActions.adjustStartTimes());
 
             //Merge fresh data where time is the same
             dispatch(
@@ -63,9 +54,10 @@ export const readBoxData = (date) => {
     };
 };
 
-//Thunk
 //outside of slice
 export const createBoxData = (box) => {
+
+    const token = localStorage.getItem('token');
 
     //recieves dispatch as an argrument
     return async (dispatch) => {
@@ -77,23 +69,20 @@ export const createBoxData = (box) => {
                 {
                     method: 'POST',
                     headers: {
+                        'Accept': 'application/json',
                         'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': getCsrfToken(),
-
-                        
+                        'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify(box),
                 }
             );
-
+            
             if (!response.ok) {
-                throw new Error('Sending box data failed.'+ response.message);
+                throw new Error('Sending box data failed.' + response.message);
             }
 
-            // const data =  response.json();
-            // return data.id;
+
             const data = await response.json();
- 
             return data.id; // Return the id
         };
 
@@ -117,16 +106,16 @@ export const updateBoxData = (box) => {
 
     //recieves dispatch as an argrument
     return async (dispatch) => {
-
+        const token = localStorage.getItem('token');
         const sendRequest = async () => {
             const response = await fetch(
                 API_URL + box.id,
                 {
                     method: 'PUT',
                     headers: {
+                        'Accept': 'application/json',
                         'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': getCsrfToken(),
-
+                        'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify(box),
                 }
@@ -134,7 +123,7 @@ export const updateBoxData = (box) => {
 
             if (!response.ok) {
 
-                throw new Error('Updating box data failed.' + response.message );
+                throw new Error('Updating box data failed.' + response.message);
             }
         };
 
@@ -147,13 +136,12 @@ export const updateBoxData = (box) => {
                 })
             );
             dispatch(boxActions.adjustStartTimes());
-
             dispatch(boxActions.addLastUpdatedIndex(box.order));
             dispatch(boxActions.managePlaceholders());
 
 
         } catch (error) {
-  
+
             console.log(error.message)
         }
     };
@@ -164,6 +152,7 @@ export const deleteBoxData = (box) => {
     //recieves dispatch as an argrument
     return async (dispatch) => {
 
+        const token = localStorage.getItem('token');
 
         const sendRequest = async () => {
             const response = await fetch(
@@ -171,9 +160,9 @@ export const deleteBoxData = (box) => {
                 {
                     method: 'DELETE',
                     headers: {
+                        'Accept': 'application/json',
                         'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': getCsrfToken(),
-
+                        'Authorization': `Bearer ${token}`  
                     },
                 }
             );
@@ -195,7 +184,7 @@ export const deleteBoxData = (box) => {
 
 
         } catch (error) {
-        
+
             console.log("error", error.message)
         }
     };

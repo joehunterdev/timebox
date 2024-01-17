@@ -24,13 +24,10 @@ class TimeboxController extends Controller
             $end = $start->copy()->addDay();
 
             $boxes = Timebox::whereBetween('start', [$start, $end])
+                ->where('user_id', auth()->id())
                 ->orderBy('start', 'asc')
                 ->get();
-
-            //log::channel("api")->info("boxes: " . $boxes);
-
         } else {
-
             $boxes = Timebox::orderBy('start', 'asc')->get();
         }
 
@@ -39,11 +36,9 @@ class TimeboxController extends Controller
     }
 
     public function store(Request $request)
-
     {
-       // Log::channel("api")->info($request);
-
-        $timebox = Timebox::create($request->all());
+        $timebox = Timebox::create($request->all() + ['user_id' => auth()->id()]);
+       // Log::channel("api")->info($timebox);
         return response()->json($timebox, 201);
     }
 

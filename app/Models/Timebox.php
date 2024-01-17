@@ -7,7 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Timebox extends Model
 {
-    protected $fillable = ['text','status', 'completed','duration','start','end','order'];
+    protected $fillable = ['text', 'status', 'completed', 'duration', 'start', 'end', 'order', 'user_id'];
 
     use HasFactory;
+
+    /**
+     * Get the user that owns the timebox.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
