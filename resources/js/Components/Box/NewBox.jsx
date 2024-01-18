@@ -32,7 +32,7 @@ const NewBox = ({ item, provided, snapshot, index, setNewBoxVisible }) => {
         dispatch(createBoxData(newBox));
     };
     return (
-        <DraggableContainer
+        <div  
             provided={provided}
             className={`height-${duration}`}
         >
@@ -41,24 +41,22 @@ const NewBox = ({ item, provided, snapshot, index, setNewBoxVisible }) => {
             </small>
             <div
                 className={`new-box d-flex shadow-sm height-30 align-items-start`}
-                {...provided.dragHandleProps}
-                style={{ cursor: "grab" }}
             >
                 <BoxForm
                     item={item}
                     nextFreePlaceholders={nextFreePlaceholders}
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}
-                 />
+                />
                 <button
                     type="submit"
-                    onClick={()=>setNewBoxVisible(false)}
+                    onClick={() => setNewBoxVisible(false)}
                     className="btn btn-outline-secondary rounded-0 btn-xs border-0"
-                >
-                    <i className="fas fa-close icon-hover"></i>
+                 >
+                     <i className="fas fa-close icon-hover "></i>
                 </button>
             </div>
-        </DraggableContainer>
+        </div>
     );
 };
 

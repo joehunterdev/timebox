@@ -10,8 +10,7 @@ const DraggableContainer = ({ children, provided, handleClick, className }) => {
                 {...provided.draggableProps}
                 {...provided.dragHandleProps}
                 onClick={handleClick}
-            >
-                {children}
+            >{children}
             </div>
         </div>
     );
