@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-
+import { uiActions } from "../../store/ui-slice";
 import { login, register } from "../../store/auth-actions";
 const AuthPage = () => {
     const dispatch = useDispatch();
@@ -16,7 +16,13 @@ const AuthPage = () => {
             const password = formData.get("password");
             const passwordConfirmation = formData.get("password_confirmation");
             if (password !== passwordConfirmation) {
-                alert("Passwords do not match");
+                dispatch(
+                    uiActions.showNotification({
+                        status: "error",
+                        title: "Error!",
+                        message: "Passwords don't match",
+                    })
+                );
             } else {
                 dispatch(
                     register(
@@ -31,12 +37,11 @@ const AuthPage = () => {
 
     return (
         <div className="row m-4">
+            <div>
+                <div className="alert "></div>
+            </div>
             <div className="d-flex align-items-end justify-content-between ">
-                <h1>
-                    {!isLogin
-                        ? "Register"
-                        : "Login"}
-                </h1>
+                <h1>{!isLogin ? "Register" : "Login"}</h1>
                 <span onClick={() => setIsLogin(!isLogin)}>
                     {isLogin
                         ? "New around here ? Register"

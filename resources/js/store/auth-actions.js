@@ -1,11 +1,13 @@
 import { checkAuthLoader } from '../../utils/http-utils';
 import { boxActions } from './box-slice';
 import { authActions } from './auth-slice';
-import { getCsrfToken } from '../../utils/http-utils';
-  export const login = (email, password) => {
+import { uiActions } from './ui-slice';
 
- 
-   return async (dispatch) => {
+import { getCsrfToken } from '../../utils/http-utils';
+export const login = (email, password) => {
+
+
+  return async (dispatch) => {
 
     const fetchData = async () => {
 
@@ -42,11 +44,17 @@ import { getCsrfToken } from '../../utils/http-utils';
 
       const authData = await fetchData();
       dispatch(authActions.login(authData || []));
- 
+
     } catch (error) {
 
       console.log("error", error);
-
+      dispatch(
+        uiActions.showNotification({
+          status: 'error',
+          title: 'Error!',
+          message: error.message || 'Authentication failed!',
+        })
+      );
     }
   };
 };
@@ -82,7 +90,13 @@ export const logout = () => {
 
     } catch (error) {
 
-      console.log("error", error);
+      dispatch(
+        uiActions.showNotification({
+          status: 'error',
+          title: 'Error!',
+          message: error.message || 'Authentication failed!',
+        })
+      );
 
     }
   };
@@ -93,7 +107,7 @@ export const register = (name, email, password) => {
   return async (dispatch) => {
 
     const fetchData = async () => {
- 
+
 
       // Then, attempt to log in
       const response = await fetch('/api/register', {
@@ -122,11 +136,17 @@ export const register = (name, email, password) => {
     try {
 
       const authData = await fetchData();
-       dispatch(authActions.login(authData || []));
+      dispatch(authActions.login(authData || []));
 
     } catch (error) {
 
-      console.log("error", error);
+      dispatch(
+        uiActions.showNotification({
+          status: 'error',
+          title: 'Error!',
+          message: error.message || 'Authentication failed!',
+        })
+      );
 
     }
   };

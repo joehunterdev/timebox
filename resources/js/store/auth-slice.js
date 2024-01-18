@@ -4,6 +4,7 @@ const initialState = {
   user: [],
   isAuthenticated: false,
   isVerified: false,
+  feedback:'',
 };
 
 const authSlice = createSlice({
@@ -13,6 +14,7 @@ const authSlice = createSlice({
     //HACK: double check security here
     login(state, action) {
       state.user = action.payload.user;
+      state.feedback = action.payload.message;
       state.isAuthenticated = true;
       localStorage.setItem('token', action.payload.access_token);
     },
