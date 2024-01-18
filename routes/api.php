@@ -28,6 +28,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout']);
     Route::get('/timeboxes/{start}', 'App\Http\Controllers\Api\TimeboxController@index');
     Route::apiResource('timeboxes', 'App\Http\Controllers\Api\TimeboxController');
+    Route::apiResource('user', 'App\Http\Controllers\User\UserController');
+
 });
 
 

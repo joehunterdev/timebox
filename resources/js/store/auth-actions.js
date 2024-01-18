@@ -102,6 +102,8 @@ export const logout = () => {
   };
 };
 
+
+
 export const register = (name, email, password) => {
 
   return async (dispatch) => {
@@ -150,4 +152,55 @@ export const register = (name, email, password) => {
 
     }
   };
+
 };
+
+
+export const deleteUserData = (user) => {
+
+  //recieves dispatch as an argrument
+  return async (dispatch) => {
+
+    const token = localStorage.getItem('token');
+
+    const sendRequest = async () => {
+      const response = await fetch(
+        '/api/user/' + user.id,
+        {
+          method: 'DELETE',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Deleting box data failed.');
+      }
+    };
+
+    try {
+
+      const autData = await sendRequest();
+
+      dispatch(authActions.logout([]));
+      dispatch(
+        uiActions.showNotification({
+          status: 'success',
+          title: 'Success!',
+          message: "User deleted!",
+        })
+      );
+    } catch (error) {
+      dispatch(
+        uiActions.showNotification({
+          status: 'error',
+          title: 'Error!',
+          message: error.message || 'Authentication failed!',
+        })
+      );
+    }
+  };
+}

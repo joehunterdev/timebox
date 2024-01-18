@@ -73,4 +73,16 @@ class AuthController extends Controller
             return response()->json(['message' => 'Unauthorized'], 401);
         }
     }
+
+    // public function deleteUser(Request $request)
+    // {
+    //     // Use auth helper to get the authenticated user
+    //     if (auth()->check()) {
+    //         $user = auth()->user();
+    //         $user->delete();
+    //         return response()->json(['message' => 'User deleted']);
+    //     } else {
+    //         return response()->json(['message' => 'Unauthorized'], 401);
+    //     }
+    // }
 }

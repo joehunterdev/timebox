@@ -14,7 +14,8 @@ import AuthPage from "./Components/Pages/AuthPage";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfilePage from "./Components/Pages/ProfilePage";
-import Notification from "./Components/Layout/Notification";
+import NotificationModal from "./Components/Layout/NotificationModal";
+
 const App = () => {
     return (
         <Provider store={store}>
@@ -25,14 +26,14 @@ const App = () => {
     );
 };
 
-const PrivateRoute = ({ element, ...rest }) => {
-    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-    <Route
-        path={path}
-        element={isAuthenticated ? props.element : <Navigate to="/auth" />}
-        {...props}
-    />;
-};
+// const PrivateRoute = ({ element, ...rest }) => {
+//     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+//     <Route
+//         path={path}
+//         element={isAuthenticated ? props.element : <Navigate to="/auth" />}
+//         {...props}
+//     />;
+// };
 
 const AppContent = () => {
     const navigate = useNavigate();
@@ -40,8 +41,7 @@ const AppContent = () => {
     const notification = useSelector((state) => state.ui.notification);
 
     useEffect(() => {
-        if (
-            !isAuthenticated &&
+        if (!isAuthenticated &&
             (location.pathname === "/profile" || location.pathname === "/")
         ) {
             navigate("/auth");
@@ -53,7 +53,7 @@ const AppContent = () => {
     return (
         <>
             {notification && (
-                <Notification
+                <NotificationModal
                     status={notification.status}
                     title={notification.title}
                     message={notification.message}

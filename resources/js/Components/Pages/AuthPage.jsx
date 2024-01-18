@@ -8,6 +8,8 @@ const AuthPage = () => {
     const [isLogin, setIsLogin] = useState(true); // Add this line
 
     const handleSubmit = async (e) => {
+        const form = e.target;
+
         const formData = new FormData(e.target);
         e.preventDefault();
         if (isLogin) {
@@ -33,13 +35,11 @@ const AuthPage = () => {
                 );
             }
         }
+        form.reset();
     };
 
     return (
         <div className="row m-4">
-            <div>
-                <div className="alert "></div>
-            </div>
             <div className="d-flex align-items-end justify-content-between ">
                 <h1>{!isLogin ? "Register" : "Login"}</h1>
                 <span onClick={() => setIsLogin(!isLogin)}>
@@ -62,6 +62,8 @@ const AuthPage = () => {
                             type="text"
                             name="name"
                             required
+                            minLength="2"
+                            maxLength="50"
                             autoComplete="name"
                         />
                     </div>
@@ -77,6 +79,20 @@ const AuthPage = () => {
                         autoComplete="email"
                     />
                 </div>
+
+                <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input
+                        id="password"
+                        className="form-control"
+                        type="password"
+                        name="password"
+                        required
+                        autoComplete="off"
+                        // minLength="8"
+ 
+/>
+                </div>
                 {!isLogin && (
                     <div className="form-group">
                         <label htmlFor="password_confirmation">
@@ -88,22 +104,11 @@ const AuthPage = () => {
                             type="password"
                             name="password_confirmation"
                             required
-                            autoComplete="new-password"
+                            minLength="8"
+                            autoComplete="current-password"
                         />
                     </div>
                 )}
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input
-                        id="password"
-                        className="form-control"
-                        type="password"
-                        name="password"
-                        required
-                        autoComplete="off"
-                    />
-                </div>
-
                 <button className="btn btn-primary mt-2" type="submit">
                     Submit
                 </button>

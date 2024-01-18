@@ -11,8 +11,7 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    //HACK: double check security here
-    login(state, action) {
+     login(state, action) {
       state.user = action.payload.user;
       state.feedback = action.payload.message;
       state.isAuthenticated = true;
@@ -43,5 +42,4 @@ const authSlice = createSlice({
 });
 
 export const authActions = authSlice.actions;
-
 export default authSlice.reducer;

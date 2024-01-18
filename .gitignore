@@ -2,10 +2,8 @@
 /node_modules
 /storage/*.key
 /vendor
-.env
-.env.backup
-.env.production
-.env.demo
+.env*
+!/.env.demo
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
@@ -29,3 +27,4 @@ start
 /tests
 composer.lock
 artisan
+ 
