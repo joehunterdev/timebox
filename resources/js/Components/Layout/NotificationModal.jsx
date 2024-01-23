@@ -22,16 +22,18 @@ const NotificationModal = (props) => {
 
     return (
         <>
-            <Modal show={show} onHide={handleClose} className={variant}>
-                <Modal.Header closeButton>
-                    <Modal.title>{props.title}</Modal.title>
-                </Modal.Header>
-                <Modal.Body>{props.message}</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                </Modal.Footer>
+            <Modal show={show} onHide={handleClose}>
+                <div className={`rounded-0 ${variant}`}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>{props.title}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>{props.message}</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary opacity-75 rounded-0" onClick={handleClose}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </div>
             </Modal>
         </>
     );

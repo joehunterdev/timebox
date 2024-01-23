@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
-
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,24 +15,38 @@ use App\Http\Controllers\Auth\AuthController;
 |
 */
 
-
-// Route::post('/login', [AuthController::class, 'login']);
-// Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
-
-//->name('register');
-//Route::post('/logout', [AuthController::class, 'logout']);
-
-Route::middleware('auth:sanctum')->group(function () {
+//Protected 
+Route::middleware('auth:sanctum', 'verified')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout']);
     Route::get('/timeboxes/{start}', 'App\Http\Controllers\Api\TimeboxController@index');
     Route::apiResource('timeboxes', 'App\Http\Controllers\Api\TimeboxController');
-    Route::apiResource('user', 'App\Http\Controllers\User\UserController');
-
+    Route::post('/email/verification-notification', function (Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+        return back()->with('message', 'Verification link sent!');
+    })->name('verification.send');
 });
 
+//Verfied
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::apiResource('user', 'App\Http\Controllers\User\UserController');
+});
+//Public
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
 
+Route::post('/reset-password', [AuthController::class, 'resetPassword'])
+    ->middleware('guest')
+    ->name('password.update');
+
+Route::get('/reset-password/{token}', function (string $token) {
+    return redirect('/auth?status=reset_password_link_sent&token=' . $token);
+})->middleware('guest')->name('password.reset');
+
+// 
+
+
+//Demo switch
 // if (request()->getHost() == parse_url(env('APP_URL'), PHP_URL_HOST)) {
 //     // Use TimeboxDemoController
 //     Route::get('/timeboxes/{start}', 'App\Http\Controllers\Api\TimeboxDemoController@index');

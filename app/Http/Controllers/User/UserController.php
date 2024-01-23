@@ -5,25 +5,21 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-// use Illuminate\Support\Facades\Hash;
-// use Illuminate\Validation\ValidationException;
-// use Illuminate\Support\Facades\Auth;
-// use Illuminate\Support\Facades\Log;
-
+ 
 class UserController extends Controller
 {
 
-    public function update(Request $request, string $id)
-    {
-        $user = User::find($id);
+    // public function update(Request $request, string $id)
+    // {
+    //     $user = User::find($id);
 
-        if ($user) {
-            $user->update($request->all());
-            return response()->json(['message' => 'User updated', 'user' => $user]);
-        } else {
-            return response()->json(['message' => 'User not found'], 404);
-        }
-    }
+    //     if ($user) {
+    //         $user->update($request->all());
+    //         return response()->json(['message' => 'User updated', 'user' => $user]);
+    //     } else {
+    //         return response()->json(['message' => 'User not found'], 404);
+    //     }
+    // }
 
     public function destroy(string $id)
     {

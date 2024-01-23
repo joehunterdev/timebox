@@ -21,12 +21,6 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make("t3st"), 
          ]);
 
-        // Create an user
-        User::create([
-            'name' => 'Joey',
-            'email' => 'joe.hunter.dev@gmail.com',
-            'password' => Hash::make("t3st2"), 
-         ]);
         Timebox::factory()->count(5)->create();
  
     }

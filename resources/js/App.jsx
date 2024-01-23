@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfilePage from "./Components/Pages/ProfilePage";
 import NotificationModal from "./Components/Layout/NotificationModal";
-
+import StatusHandler from "./Components/Layout/StatusHandler";
 const App = () => {
     return (
         <Provider store={store}>

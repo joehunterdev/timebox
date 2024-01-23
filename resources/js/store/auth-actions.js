@@ -6,7 +6,6 @@ import { uiActions } from './ui-slice';
 import { getCsrfToken } from '../../utils/http-utils';
 export const login = (email, password) => {
 
-
   return async (dispatch) => {
 
     const fetchData = async () => {
@@ -156,6 +155,117 @@ export const register = (name, email, password) => {
 };
 
 
+export const forgotPassword = (email) => {
+
+  return async (dispatch) => {
+
+    const fetchData = async () => {
+
+      //Set NEW cookie in the browser (SPA)
+      await fetch('/sanctum/csrf-cookie', {
+        method: 'GET',
+        credentials: 'same-origin',
+      });
+
+      // Then, attempt to log in
+      const response = await fetch('/api/forgot-password', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        //body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email }),
+        credentials: 'same-origin',
+      });
+
+
+      if (response.status !== 200) {
+        const responseBody = await response.json();
+        throw new Error(responseBody.message || 'Could not fetch auth data!');
+      }
+
+      const data = await response.json();
+      return data;
+    };
+
+
+    try {
+
+      const authData = await fetchData();
+      dispatch(authActions.login(authData || []));
+
+    } catch (error) {
+
+      console.log("error", error);
+      dispatch(
+        uiActions.showNotification({
+          status: 'error',
+          title: 'Error!',
+          message: error.message || 'Authentication failed!',
+        })
+      );
+    }
+  };
+};
+
+
+
+export const resetPassword = (token,email,password) => {
+
+  return async (dispatch) => {
+
+    const fetchData = async () => {
+
+      //Set NEW cookie in the browser (SPA)
+      await fetch('/sanctum/csrf-cookie', {
+        method: 'POST',
+        credentials: 'same-origin',
+      });
+
+      // Then, attempt to log in
+      const response = await fetch('/api/reset-password', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        //body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ token, email, password, password_confirmation: password }),       
+        credentials: 'same-origin',
+      });
+
+      console.log("response", JSON.stringify(response));
+      if (response.status !== 200) {
+        const responseBody = await response.json();
+        throw new Error(responseBody.message || 'Could not fetch auth data!');
+      }
+
+      const data = await response.json();
+      return data;
+    };
+
+
+    try {
+
+      const authData = await fetchData();
+      dispatch(authActions.login(authData || []));
+
+    } catch (error) {
+
+      console.log("error", error);
+      dispatch(
+        uiActions.showNotification({
+          status: 'error',
+          title: 'Error!',
+          message: error.message || 'Authentication failed!',
+        })
+      );
+    }
+  };
+};
+
+
 export const deleteUserData = (user) => {
 
   //recieves dispatch as an argrument
@@ -203,4 +313,6 @@ export const deleteUserData = (user) => {
       );
     }
   };
+
+
 }
