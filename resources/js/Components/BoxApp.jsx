@@ -23,8 +23,8 @@ const BoxApp = () => {
     }, [selectedDate]);
 
     return (
-        <main className="container-fluid bg-light-subtle">
-            <div className="row justify-content-center mt-4 mb-4">
+        <>
+             <div className="row justify-content-center mt-4 mb-4">
                 <div className="col-xs-12 col-sm-12 col-md-7 col-lg-5">
                     <SelectDay selectedDate={selectedDate} />
                     <SelectHour selectedDate={selectedDate} />
@@ -35,7 +35,7 @@ const BoxApp = () => {
                     <DailyList></DailyList>
                 </div>
             </div>
-        </main>
+        </>
     );
 };
 

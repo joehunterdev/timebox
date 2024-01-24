@@ -51,7 +51,7 @@ const NewBox = ({ item, provided, snapshot, index, setNewBoxVisible }) => {
                 <button
                     type="submit"
                     onClick={() => setNewBoxVisible(false)}
-                    className="btn btn-outline-secondary rounded-0 btn-xs border-0"
+                    className="box-new btn btn-outline-secondary rounded-0 btn-xs border-0"
                  >
                      <i className="fas fa-close icon-hover "></i>
                 </button>

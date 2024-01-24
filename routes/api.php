@@ -25,6 +25,9 @@ Route::middleware('auth:sanctum', 'verified')->group(function () {
         return back()->with('message', 'Verification link sent!');
     })->name('verification.send');
 });
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/logout', [AuthController::class, 'logout']);
+});
 
 //Verfied
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
@@ -40,7 +43,7 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword'])
     ->name('password.update');
 
 Route::get('/reset-password/{token}', function (string $token) {
-    return redirect('/auth?status=reset_password_link_sent&token=' . $token);
+    return redirect('/reset-password?token=' . $token);
 })->middleware('guest')->name('password.reset');
 
 // 

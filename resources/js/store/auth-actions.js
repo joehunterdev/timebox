@@ -137,7 +137,15 @@ export const register = (name, email, password) => {
     try {
 
       const authData = await fetchData();
-      dispatch(authActions.login(authData || []));
+      //dispatch(authActions.login(authData || []));
+
+      dispatch(
+        uiActions.showNotification({
+          status: 'success',
+          title: 'You have registered succesfully!',
+          message: "Check your inbox for your verification link",
+        })
+      );
 
     } catch (error) {
 
@@ -182,7 +190,15 @@ export const forgotPassword = (email) => {
 
       if (response.status !== 200) {
         const responseBody = await response.json();
-        throw new Error(responseBody.message || 'Could not fetch auth data!');
+        if (responseBody.message) {
+
+          throw new Error(responseBody.message + " Its likely you need to verfify your email");
+
+        } else {
+          throw new Error("Check your inbox and verify your email");
+
+        }
+
       }
 
       const data = await response.json();
@@ -193,8 +209,13 @@ export const forgotPassword = (email) => {
     try {
 
       const authData = await fetchData();
-      dispatch(authActions.login(authData || []));
-
+      dispatch(
+        uiActions.showNotification({
+          status: 'success',
+          title: 'Reset Link Sent!',
+          message: "Check your inbox for your reset link",
+        })
+      );
     } catch (error) {
 
       console.log("error", error);
@@ -211,7 +232,7 @@ export const forgotPassword = (email) => {
 
 
 
-export const resetPassword = (token,email,password) => {
+export const resetPassword = (token, email, password) => {
 
   return async (dispatch) => {
 
@@ -231,11 +252,10 @@ export const resetPassword = (token,email,password) => {
           'Content-Type': 'application/json',
         },
         //body: JSON.stringify({ email, password }),
-        body: JSON.stringify({ token, email, password, password_confirmation: password }),       
+        body: JSON.stringify({ token, email, password, password_confirmation: password }),
         credentials: 'same-origin',
       });
 
-      console.log("response", JSON.stringify(response));
       if (response.status !== 200) {
         const responseBody = await response.json();
         throw new Error(responseBody.message || 'Could not fetch auth data!');
@@ -249,16 +269,23 @@ export const resetPassword = (token,email,password) => {
     try {
 
       const authData = await fetchData();
-      dispatch(authActions.login(authData || []));
+      //dispatch(authActions.login(authData || []));
+
+      dispatch(
+        uiActions.showNotification({
+          status: 'success',
+          title: 'Password Reset Successfully',
+          message: "Please login with your new password!",
+        })
+      );
 
     } catch (error) {
 
-      console.log("error", error);
       dispatch(
         uiActions.showNotification({
           status: 'error',
           title: 'Error!',
-          message: error.message || 'Authentication failed!',
+          message: error.message || 'Reset failed!',
         })
       );
     }
@@ -287,7 +314,8 @@ export const deleteUserData = (user) => {
       );
 
       if (!response.ok) {
-        throw new Error('Deleting box data failed.');
+        const responseBody = await response.json();
+        throw new Error(responseBody.message || 'Could not delete user data!');
       }
     };
 
@@ -296,6 +324,7 @@ export const deleteUserData = (user) => {
       const autData = await sendRequest();
 
       dispatch(authActions.logout([]));
+
       dispatch(
         uiActions.showNotification({
           status: 'success',

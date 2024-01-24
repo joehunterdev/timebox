@@ -14,12 +14,19 @@ const NotificationModal = (props) => {
     let variant = "";
 
     if (props.status === "error") {
+        variant = "bg-danger-subtle";
+    }
+    
+    if (props.status === "warning") {
         variant = "bg-warning-subtle";
     }
     if (props.status === "success") {
         variant = "bg-success-subtle";
     }
-
+    if (props.status === "info") {
+        variant = "bg-primary-subtle";
+    }
+ 
     return (
         <>
             <Modal show={show} onHide={handleClose}>

@@ -17,7 +17,7 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
 
     -   ## API
         -   [x] Data structure
-        -   [ ] User tables relationships and retrieval
+        -   [x] User tables relationships and retrieval
         -   [x] Seeder
             -   [x] Generate some dummy data
         -   [x] Define routes (additional)
@@ -35,17 +35,28 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
         -   [x] Layout Mobile
         -   [x] Layout Tablet
         -   [x] Layout Desktop
+        -   [x] Center col-8 on login and register
 
     -   ## Router
+        - [] Demo
+        -   [x] Login
+        -   [x] Registr
+        -   [x] Profile
+        -   [x] Signup
 
-        -   [ ] Login
-        -   [ ] Registr
-        -   [ ] Profile
-        -   [ ] Signup
+    -   ## Header
+
+              - [x] Icons profile
+              - [x] Icons logout
+              - [ ] Center calendar icon
 
     -   ## Box App
-
         -   BUG [x] Check and fix, Item id hack for prod
+
+    -   ## Demo Page
+
+        -  [] Route
+        -  [] First time welcome and notification  
 
     -   ## New Box
 
@@ -71,7 +82,6 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
         -   [x] Rag status styling basic func
 
     -   ## Update Box
-
         -   [x] Form inputs squashed
         -   BUG [x] Duration being set to null and or not on delete
         -   BUG [x] start undefined on box 16
@@ -108,7 +118,7 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
         -   [x] Http client
         -   [x] If box height > 60 then move txt area down to occupie all that space
 
-    -   Box Tab
+    -   ## Box Tab
 
         -   [x] Duration tap Feature
         -   [x] Status tap Feature
@@ -154,7 +164,7 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
         -   [x] On duration reduction need to add back placeholders based on next placeholders
         -   [x] Check box is on 30 min intervals no 35mins
 
-    -   Overview Daily List
+    -   ## Overview Daily List
 
         -   BUG [x] Dragging to top will cause all times to reset from dragged start point
 
@@ -208,69 +218,62 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
         -   [x] Generic single add box instead of initializing a whole
                 array
 
-    -   ## Workflow
+    -   ## Profile
+
+            - [x] hello msg
+            - [x] Delete with 2 step confirm
 
     -   ## Delete Button
 
         -   [x] Removing item must add a placeholder
         -   BUG [x] Resets times to 00:00 on remove first item ?
 
-    -   ## Refactor / Analysis
+    -   ## Auth
 
-        -   [] start time could be automaically revealed on drag ?? it would be nice to see however could argue that the oringal time will help replacement
-        -   [] We seem to have alot of dispatches adjust start times ? necessary on init ?
-        -   [] Refactor file names /Box/New
-        -   [] useSelector((state) => state.stack.boxes); in add and update cld be
-            handled in above cmp ?
-        -   [x] Single component for updating duration
-        -   [x] Resueable form component ? Try reusecase
+        -   [x] 2fa
+        -   [x] Delete ACC
+        -   [x] Delete acc 2 step
+        -   [x] Forgot password
+
+        -   [x] Confirmed password
+        -   [x] Refresh form reset.form() on auth form switch
+        -   [x] Confirmed password nicer feedback ux
         -   [x] Container cmp for box to avoid nesting
 
-        -   ReDesign Markup
-
+    -   ## ReDesign Markup
             -   [x] Branch of timeline-ui bootstrap
-
             -   Design Elements
+            -   [x] Box Card group with a shadow
+            -   [x] Empty Box card
+            -   [x] icons x4
+            -   [x] Weekly ? or Alternative design for select day ? ulitmately
+            -   [x] empty boxes (Removal of outline on )
+            -   [x] Update Funcionality
+                -   Popup sticky modal for editing ?
+            -   [x] new branch of timeline-ui
+            -   [x] Daily Timeline wrapper ? Shorten
+            -   [x] Design Route for static dev switch
 
-                -   [x] Box Card group with a shadow
-                -   [x] Empty Box card
-                -   [x] icons x4
-                -   [x] Weekly ? or Alternative design for select day ? ulitmately
+            -   [x] Mix Setup
+            -   [x] Scss mix live integration test
+            -   [x] 7 - 1 styleheet
 
-                    -   Make use of height
-                    -   Be aware of thumb areas
-                    -   Remember we may have largish boxes ? how
-                    -   React BS vs css any advantages
-                    -   Sass requirements here ? for box.scs
-                    -   Make full use of this space on full
-                    -   Box size design integration
-                    -   How to do this flexbox ? height as prop
-                    -   Keep Buttons always top left
-                    -   Use (percentages or vw ?s)
-                    -   Need to be able to update duration, and status and start in overview
+        -   [x] bs implementation
 
-                -   [x] empty boxes (Removal of outline on )
-                -   [x] Update Funcionality
-                    -   Popup sticky modal for editing ?
-                -   [x] new branch of timeline-ui
-                -   [x] Daily Timeline wrapper ? Shorten
-                -   [x] Design Route for static dev switch
+            -   list group
+            -   [x] Step 1: User research. Todo lists / Calendars / Jira /
+            -   [] Step 2: Define objectives.
+                -   Sortable
+                -   Adjustable time slots
+            -   [x] Step 3: Wireframing.
 
-                -   [x] Mix Setup
-                -   [x] Scss mix live integration test
-                -   [x] 7 - 1 styleheet
+        -  [] 15 / Placeholders mins
 
-            -   [x] bs implementation
+    -   ## Notifications to ui
 
-                -   list group
-                -   [x] Step 1: User research.  Todo lists / Calendars / Jira /
-                    
-                -   [] Step 2: Define objectives.
-                    -   Sortable
-                    -   Adjustable time slots
-                -   [x] Step 3: Wireframing.
-
-        -   [] 15 / Placeholders mins
+        -   [x] Success
+        -   [x] Error
+        -   [x] Warning
 
 ---
 
@@ -289,7 +292,7 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
     -   [] Drag and drop updates start time
     -   [] Drag and drop does not add or remove boxes
 
--   [] Acceptance
+-   ## [] Acceptance
 
 ---
 
@@ -299,22 +302,15 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
     -   To enable extensions, verify that they are enabled in your .ini files:
         -   Enable fileinfo
 -   [x] peer vite@"^3.0.0" from @vitejs/plugin-react@2.2.0 - npm install vite@3
--   [x] Missing id on beautifull dnd
-    -   [x] Need to remove strict mode !
-    -   [x] Moving break time fails to update
-        -   Should breaks even be draggable ?
--   [x] Moving only one hour at a time
 
--   [x] Glitchy reset. Likely because cmp is re redering could useUseffect?
-
--   [x]: New time on drop is not 1hr behing
--   [x] There is a strictmode fix !! see original logrocket blog  
-        [Adding Drag and Drop Functionality with React Beautiful DND](https://blog.logrocket.com/adding-drag-and-drop-functionality-with-react-beautiful-dnd/)
+-   [ ] There is a strictmode fix !! see original logrocket blog  
+         [Adding Drag and Drop Functionality with React Beautiful DND](https://blog.logrocket.com/adding-drag-and-drop-functionality-with-react-beautiful-dnd/)
 
 ## Milestones
 
 -   [x] Core Concept
 -   [x] 2.0 Features
--   [ ] Demo Web
--   [] User funcionality and full launch
+-   [x] Demo Web
+-   [] User funcionality
+-   [] and full launch
 -   [] Testing and user feedback

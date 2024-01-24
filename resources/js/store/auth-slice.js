@@ -5,6 +5,7 @@ const initialState = {
   isAuthenticated: false,
   isVerified: false,
   feedback:'',
+  status: 'idle',
 };
 
 const authSlice = createSlice({

@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import ProfilePage from "./Components/Pages/ProfilePage";
 import NotificationModal from "./Components/Layout/NotificationModal";
 import StatusHandler from "./Components/Layout/StatusHandler";
+import ResetPassword from "./Components/Auth/ResetPassword";
 const App = () => {
     return (
         <Provider store={store}>
@@ -41,7 +42,8 @@ const AppContent = () => {
     const notification = useSelector((state) => state.ui.notification);
 
     useEffect(() => {
-        if (!isAuthenticated &&
+        if (
+            !isAuthenticated &&
             (location.pathname === "/profile" || location.pathname === "/")
         ) {
             navigate("/auth");
@@ -60,11 +62,14 @@ const AppContent = () => {
                 />
             )}
             <Header />
-            <Routes>
-                <Route path="/auth" element={<AuthPage />} />
-                <Route path="/" element={<BoxApp />} />
-                <Route path="/profile" element={<ProfilePage />} />
-            </Routes>
+            <main className="container-fluid bg-light-subtle">
+                <Routes>
+                    <Route path="/auth" element={<AuthPage />} />
+                    <Route path="/reset-password" element={<ResetPassword />} />
+                    <Route path="/" element={<BoxApp />} />
+                    <Route path="/profile" element={<ProfilePage />} />
+                </Routes>
+            </main>
         </>
     );
 };

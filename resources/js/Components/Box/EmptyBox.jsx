@@ -14,12 +14,12 @@ const EmptyBox = ({ item, provided, snapshot, index }) => {
                 index={index}
                 setNewBoxVisible={setNewBoxVisible}
             />
-            <button
+            {/* <button
                 onClick={() => setNewBoxVisible(false)}
-                className="btn btn-outline-secondary rounded-0 btn-xs border-0"
+                className="box-empty btn btn-outline-secondary rounded-0 btn-xs border-0"
             >
                 <i className="fas fa-close icon-hover"></i>
-            </button>
+            </button> */}
         </DraggableContainer>
     ) : (
         <DraggableContainer provided={provided}>

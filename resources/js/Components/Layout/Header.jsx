@@ -5,12 +5,12 @@ import ProfileIcon from "../UI/ProfileIcon";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 const Header = () => {
-    const {user, isAuthenticated} = useSelector((state) => state.auth);
+    const { user, isAuthenticated } = useSelector((state) => state.auth);
 
     return (
         <header className="shadow-sm">
             <nav className="navbar bg-body-tertiary d-flex align-items-center  justify-content-between  p-1">
-                <div>
+                <div className="d-flex justify-content-start">
                     <Link
                         to={isAuthenticated ? "/" : "/auth"}
                         className="link-body-emphasis text-decoration-none d-block"
@@ -27,11 +27,13 @@ const Header = () => {
                         <div>
                             <SelectDayCalendar />
                         </div>
-                        <div>
-                            {user?.name && `Hi ${user.name} `}
-                            <ProfileIcon />
-                        </div>
-                        <div>
+                        {isAuthenticated && user?.name && (
+                            <div className="ml-3">
+                                {/* Hi {user.name.substring(0, 8)} */}
+                                <ProfileIcon />
+                            </div>
+                        )}
+                        <div className="d-flex justify-content-end">
                             <AccessIcon />
                         </div>
                     </>
