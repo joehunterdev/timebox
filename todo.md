@@ -1,4 +1,4 @@
-# V1.7.7:
+# V1.8.0:
 
 A drag and drop todo app with visually adjustable time slots to fill an 8 hour day.
 
@@ -45,11 +45,12 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
         -   [x] Signup
 
     -   ## Header
-            - [ ] Login button when logged out
+            - [x] Login button when logged out
               - [x] Icons profile
               - [x] Icons logout
-              - [ ] Center calendar icon or add drop down menu on right icon
-            - [ ] Home icon logic
+              - [x] Center calendar icon or add drop down menu on right icon
+            - [] Home icon logic 
+                - Now has calendar to direct to box app
     -   ## Box App
         -   BUG [x] Check and fix, Item id hack for prod
 
@@ -155,7 +156,7 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
 
     -   ## Redux
 
-        -   [ ] Do batch update
+        -   []  Do batch update
         -   [x] lastTotalToRemove: this needs to be grouped by day ? stack ?
         -   [x] lastUpdatedIndex: this needs to be updated
         -   [x] Basic crud slice methods
@@ -259,7 +260,7 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
             -   [x] Mix Setup
             -   [x] Scss mix live integration test
             -   [x] 7 - 1 styleheet
-
+            - [] variants ! define somehting more inline with site 
         -   [x] bs implementation
 
             -   list group
@@ -268,9 +269,17 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
                 -   Sortable
                 -   Adjustable time slots
             -   [x] Step 3: Wireframing.
-
         -  [] 15 / Placeholders mins
 
+    - ## Static Home or demo
+        - [ ] Can i use something thats not index.html for seo results ?
+        - [ ] Do a static blade template for about
+        - [ ] Make dummy data more fun or relatable
+        - [x] Feedback generic warning or freeze certain controls ? 
+            - or better yet fix more bugs sigh
+            - BUG [x] id in demo
+            - BUG [x] Update / Destroy methods expecting different types proxy
+            
     -   ## Notifications to ui
 
         -   [x] Success
@@ -305,7 +314,7 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
         -   Enable fileinfo
 -   [x] peer vite@"^3.0.0" from @vitejs/plugin-react@2.2.0 - npm install vite@3
 
--   [ ] There is a strictmode fix !! see original logrocket blog  
+-   [] There is a strictmode fix !! see original logrocket blog  
          [Adding Drag and Drop Functionality with React Beautiful DND](https://blog.logrocket.com/adding-drag-and-drop-functionality-with-react-beautiful-dnd/)
 
 ## Milestones
@@ -313,6 +322,6 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
 -   [x] Core Concept
 -   [x] 2.0 Features
 -   [x] Demo Web
--   [] User funcionality
+-   [x] User funcionality
 -   [] and full launch
 -   [] Testing and user feedback

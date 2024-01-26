@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,15 +14,9 @@ class TimeboxProxyController extends Controller
 {
     public function index(Request $request, $start = "")
     {
-        //Auth isnot enough here
         if ($request->user()) {
-
-            Log::channel("api")->error("Proxy Index authed");
             $controller = resolve(TimeboxController::class);
-
         } else {
-            Log::channel("api")->error("Proxy not authed");
-
             $controller = resolve(TimeboxDemoController::class);
         }
 
@@ -38,27 +33,26 @@ class TimeboxProxyController extends Controller
         return $controller->store($request);
     }
 
-    public function show(Request $request, Timebox $timebox)
+
+    public function update(Request $request, $timebox)
     {
+        $id = $timebox instanceof Timebox ? $timebox : (int) $timebox;
+
         if (Auth::check()) {
             $controller = resolve(TimeboxController::class);
+
+            // Create a new Timebox instance with the data from the request
+            $newTimebox = new Timebox($request->all());
+            $newTimebox->id = $id; // Set the ID of the new Timebox
+
+            return $controller->update($request, $newTimebox);
         } else {
             $controller = resolve(TimeboxDemoController::class);
+            return $controller->update($request, $id);
         }
-        return $controller->show($request, $timebox);
     }
 
-    public function update(Request $request, Timebox $timebox)
-    {
-        if (Auth::check()) {
-            $controller = resolve(TimeboxController::class);
-        } else {
-            $controller = resolve(TimeboxDemoController::class);
-        }
-        return $controller->update($request, $timebox);
-    }
-
-    public function destroy(Request $request, Timebox $timebox)
+    public function destroy(Timebox $timebox)
     {
         if (Auth::check()) {
             $controller = resolve(TimeboxController::class);

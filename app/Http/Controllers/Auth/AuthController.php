@@ -78,6 +78,7 @@ class AuthController extends Controller
     {
         // Use auth helper to get the authenticated user rather than request
         $user = auth()->user();
+        
         // Log::channel("api")->info("logout token: " .  print_r($user->tokens, true)) ;
 
         if ($user) {

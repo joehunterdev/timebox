@@ -22,6 +22,7 @@ export const readBoxData = (date) => {
 
             if (response.status !== 200) {
                 const responseBody = await response.json();
+                console.log(responseBody);
                 throw new Error(responseBody.message || 'Could not fetch box data!');
             }          
              const data = await response.json();

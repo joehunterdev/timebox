@@ -22,21 +22,19 @@ const Header = () => {
                         />
                     </Link>
                 </div>
-                    <>
-                        <div>
-                            <SelectDayCalendar />
-                        </div>
-                        {isAuthenticated && user?.name && (
-                            <div className="ml-3">
-                                {/* Hi {user.name.substring(0, 8)} */}
-                                <ProfileIcon />
-                            </div>
-                        )}
-                        <div className="d-flex justify-content-end">
+                <>
+                    <div>
+                        <SelectDayCalendar />
+                    </div>
+                    <div className="d-flex justify-content-end">
+                        {isAuthenticated && user?.name ? (
+                            <ProfileIcon />
+                        ) : (
                             <AccessIcon />
-                        </div>
-                    </>
-             </nav>
+                        )}
+                    </div>
+                </>
+            </nav>
         </header>
     );
 };

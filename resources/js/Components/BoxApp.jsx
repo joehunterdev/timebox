@@ -10,22 +10,19 @@ import { readBoxData } from "../store/box-actions";
 const BoxApp = () => {
     const dispatch = useDispatch();
     const selectedDate = useSelector((state) => state.stack.selectedDate);
-    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     useEffect(() => {
-        console.log("BoxApp: useEffect: isAuthenticated: ", isAuthenticated);
         dispatch(
             boxActions.initPlaceholders({
                 nHours: 8,
                 startDateTime: selectedDate,
             })
         );
-        console.log("BoxApp: useEffect: selectedDate: ", selectedDate);
         dispatch(readBoxData(selectedDate));
     }, [selectedDate]);
 
     return (
         <>
-             <div className="row justify-content-center mt-4 mb-4">
+            <div className="row justify-content-center mt-4 mb-4">
                 <div className="col-xs-12 col-sm-12 col-md-7 col-lg-5">
                     <SelectDay selectedDate={selectedDate} />
                     <SelectHour selectedDate={selectedDate} />
