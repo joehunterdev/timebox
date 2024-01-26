@@ -3,23 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\User;
- 
+
 class UserController extends Controller
 {
-
-    // public function update(Request $request, string $id)
-    // {
-    //     $user = User::find($id);
-
-    //     if ($user) {
-    //         $user->update($request->all());
-    //         return response()->json(['message' => 'User updated', 'user' => $user]);
-    //     } else {
-    //         return response()->json(['message' => 'User not found'], 404);
-    //     }
-    // }
 
     public function destroy(string $id)
     {

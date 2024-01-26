@@ -45,18 +45,19 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
         -   [x] Signup
 
     -   ## Header
-
+            - [ ] Login button when logged out
               - [x] Icons profile
               - [x] Icons logout
-              - [ ] Center calendar icon
-
+              - [ ] Center calendar icon or add drop down menu on right icon
+            - [ ] Home icon logic
     -   ## Box App
         -   BUG [x] Check and fix, Item id hack for prod
 
-    -   ## Demo Page
-
-        -  [] Route
-        -  [] First time welcome and notification  
+    -   ## Demo Page or Swtich
+         - [x] Route / as TimeboxDemoController if not authed
+            - used proxy controller but better use middleware 
+        -  [] Route 
+        -  [ ] First time welcome and notification  
 
     -   ## New Box
 
@@ -90,6 +91,7 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
                 -   Create a box second to last as 2 hours then increase or reduce.
         -   [x] Update text button press
         -   ~~on keypress sleep ? ~~
+        - BUG [ ] Reducing box size seems to add a new box in between next placeholder
         -   Remember:
             -   that when in this update flow its unlikeyl many api call will be required (levarage this)
         -   [x] Center height color text size so its not jumping around
@@ -126,9 +128,9 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
     -   ## Select nHours
 
         -   [] Store nHours redux
-
+        
     -   ## Select Day
-
+        - [ ] Needs to redirect to /
         -   BUG [x] Moving back and forward (after an item creation) reutrns `same key, 5. Keys should be unique` Solved by removing setDate dispatch on, also solved by adjusting boxes begore managing
 
     -   ## Select Calendar
@@ -234,7 +236,7 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
         -   [x] Delete ACC
         -   [x] Delete acc 2 step
         -   [x] Forgot password
-
+        -   [ ] Logout needs t refresh home page to demo
         -   [x] Confirmed password
         -   [x] Refresh form reset.form() on auth form switch
         -   [x] Confirmed password nicer feedback ux

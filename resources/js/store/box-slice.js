@@ -20,7 +20,7 @@ const boxSlice = createSlice({
         },
 
 
-        initPlaceholders(state, action, src = "") {
+        initPlaceholders(state, action) {
             state.boxes = Array.from({ length: action.payload.nHours * 2 }, (_, index) => {
                 return getPlaceholder(`init-${index}`, calculateNewStartTime(action.payload.startDateTime, index))
             });

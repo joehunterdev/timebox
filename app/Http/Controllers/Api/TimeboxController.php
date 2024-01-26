@@ -12,7 +12,7 @@ class TimeboxController extends Controller
 {
     public function index($start = "")
     {
-
+        
         if ($start) {
 
             $boxes = Timebox::orderBy('start', 'asc')->get();
@@ -38,7 +38,6 @@ class TimeboxController extends Controller
     public function store(Request $request)
     {
         $timebox = Timebox::create($request->all() + ['user_id' => auth()->id()]);
-       // Log::channel("api")->info($timebox);
         return response()->json($timebox, 201);
     }
 

@@ -28,3 +28,4 @@ start
 composer.lock
 artisan
  
+public/php_errorlog

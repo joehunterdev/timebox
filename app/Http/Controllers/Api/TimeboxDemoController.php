@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-// use App\Models\Timebox;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 
- 
+
 class TimeboxDemoController extends Controller
 {
     public function __construct()
@@ -17,15 +16,23 @@ class TimeboxDemoController extends Controller
 
     public function index($start = "")
     {
-        $timeboxes = session()->get('timeboxes', []);
+        Log::channel("api")->error("Demo Index");
+        $isAuthenticated = \Illuminate\Support\Facades\Auth::check();
+        \Illuminate\Support\Facades\Log::channel("api")->info('Authentication status: ' . ($isAuthenticated ? 'Authenticated' : 'Not authenticated'));
 
-        // Retrieve the timeboxes from the session
-        if (count($timeboxes) == 0) {
-            $this->initSession($start);
+        try {
+            $timeboxes = session()->get('timeboxes', []);
+
+            // Check if $timeboxes is null
+            if (!is_countable($timeboxes) || count($timeboxes) == 0) {
+                $this->initSession($start);
+                $timeboxes = session()->get('timeboxes');
+            }
+     
+            return response()->json($timeboxes);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'An error occurred. Please try again later.'], 500);
         }
-        $timeboxes = session()->get('timeboxes');
-        Log::channel("api")->info("index ");
-        return response()->json($timeboxes);
     }
 
     public  function initSession($start = "")
@@ -35,11 +42,11 @@ class TimeboxDemoController extends Controller
         $timeFormat = 'Y-m-d\TH:i';
         $timeboxes = [
             ['id' =>  1, 'text' => 'Meditate', 'duration' => 30, "status" => "done", "start" => $start->copy()->setTime(date("H"), 0, 0)->format($timeFormat)],
-            ['id' =>  2, 'text' => 'Study: Js Patterns', 'duration' => 60, "status" => "todo", "start" => $start->copy()->setTime(date("H")+1, 30, 0)->format($timeFormat)],
+            ['id' =>  2, 'text' => 'Study: Js Patterns', 'duration' => 60, "status" => "todo", "start" => $start->copy()->setTime(date("H") + 1, 30, 0)->format($timeFormat)],
             ['id' =>  4, 'text' => 'Excercise', 'duration' => 30, "status" => "done", "start" => $start->copy()->setTime(date("H") + 2, 30, 0)->format($timeFormat)],
             ['id' =>  5, 'text' => 'Make Dinner', 'duration' => 30, "status" => "doing", "start" => $start->copy()->setTime(date("H") + 4, 30, 0)->format($timeFormat)],
             ['id' =>  6, 'text' => 'Deep Work', 'duration' => 180, "status" => "doing", "start" => $start->copy()->setTime(date("H") + 5, 30, 0)->format($timeFormat)],
-             ['id' =>  3, 'text' =>  'Meditate', 'duration' => 30, "status" => "todo", "start" => $start->copy()->setTime(date("H")+7, 00, 0)->format($timeFormat)]
+            ['id' =>  3, 'text' =>  'Meditate', 'duration' => 30, "status" => "todo", "start" => $start->copy()->setTime(date("H") + 7, 00, 0)->format($timeFormat)]
 
         ];
 
@@ -49,28 +56,25 @@ class TimeboxDemoController extends Controller
 
 
     public function store(Request $request)
-    {          
+    {
         //Try a post request
-        
-        Log::channel("api")->info("Try store ");
 
         try {
-            error_reporting(E_ALL);
-
-            // Your existing code...
-            // Log::channel("api")->info("Store ses: " . print_r(session()->get('timeboxes', []), true));
-            // Get the timeboxes from the session, or an empty array if they don't exist
 
             $timeboxes = session()->get('timeboxes');
-            
+
             // Generate the next ID
-            $nextId = count($timeboxes) > 0 ? max(array_column($timeboxes, 'id')) + 1 : 1;
+            if (is_countable($timeboxes) && count($timeboxes) > 0) {
+                $nextId = max(array_column($timeboxes, 'id')) + 1;
+            } else {
+                $nextId = 1;
+            }
             $nextId = (string) $nextId;
- 
+
             // Mock the Timebox creation
             $timebox = [
                 'id' => $nextId,
-                'text' =>$request->input('duration'),
+                'text' => $request->input('duration'),
                 'duration' => $request->input('duration'),
                 'status' => $request->input('status'),
                 'start' => $request->input('start'),
@@ -81,14 +85,13 @@ class TimeboxDemoController extends Controller
 
             // Store the updated timeboxes array in the session
             session()->put('timeboxes', $timeboxes);
-        
+
             // Return the new timebox
             return response()->json($timebox, 201);
-
         } catch (\Exception $e) {
 
-            Log::channel("api")->error("Error in store method: " . $e->getMessage());
-            return response()->json(['error' => 'Error in store method: ' . $e->getMessage()], 500);
+            // Log::channel("api")->error("Error in store method: " . $e->getMessage());
+            return response()->json(['message' => 'Error in store method: '], 500);
         }
     }
 
@@ -122,20 +125,12 @@ class TimeboxDemoController extends Controller
         // Store the updated timeboxes back in the session
         session()->put('timeboxes', $timeboxes);
         //Log::channel("api")->info("update put ses: " . print_r($timeboxes, true));
-
         return response()->json($updatedTimebox, 200);
     }
 
     public function destroy($id)
     {
-        $timeboxes = session()->get('timeboxes', []);
-        // Find the timebox in the array and delete it...
-        // ...
-        // If the timebox is found, update it
-        // if ($index !== false) {
-        //     $timeboxes[$index] = $updatedTimebox;
-        // }
-
-        return response()->json(null, 204);
+        $timeboxes = session()->get('timeboxes', []); 
+          return response()->json(null, 204);
     }
 }

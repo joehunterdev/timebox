@@ -13,13 +13,15 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Str;
+use Laravel\Sanctum\HasApiTokens;
 
 class AuthController extends Controller
 {
 
+    use HasApiTokens;
+
     public function register(Request $request)
     {
-        Log::channel('api')->info('Register request', ['request' => $request->all()]);
         $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users',
@@ -74,11 +76,16 @@ class AuthController extends Controller
 
     public function logout()
     {
-        //Use auth helper to get the authenticated user rather than request
-        if (auth()->check()) {
-            auth()->user()->tokens()->delete();
-            return response()->json(['message' => 'Logged out']);
+        // Use auth helper to get the authenticated user rather than request
+        $user = auth()->user();
+        // Log::channel("api")->info("logout token: " .  print_r($user->tokens, true)) ;
+
+        if ($user) {
+            $user->tokens()->delete();
+            session()->flush();
+            return response()->json(['message' => 'Logged out'], 200);
         } else {
+
             return response()->json(['message' => 'Unauthorized'], 401);
         }
     }
@@ -103,8 +110,7 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:8|confirmed',
         ]);
-        Log::channel('api')->info('Reset password request', ['request' => $request->all()]);    
-         $status = Password::reset(
+        $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function (User $user, string $password) {
                 $user->forceFill([
@@ -117,7 +123,7 @@ class AuthController extends Controller
             }
         );
 
-         if ($status === Password::PASSWORD_RESET) {
+        if ($status === Password::PASSWORD_RESET) {
             return response()->json(['message' => "Password has been reset"], 200);
         } elseif ($status === Password::INVALID_TOKEN) {
             return response()->json(['message' => "Invalid token: Check your inbox and try again"], 400);

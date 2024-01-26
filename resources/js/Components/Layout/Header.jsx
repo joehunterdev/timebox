@@ -22,7 +22,6 @@ const Header = () => {
                         />
                     </Link>
                 </div>
-                {isAuthenticated && (
                     <>
                         <div>
                             <SelectDayCalendar />
@@ -37,8 +36,7 @@ const Header = () => {
                             <AccessIcon />
                         </div>
                     </>
-                )}
-            </nav>
+             </nav>
         </header>
     );
 };

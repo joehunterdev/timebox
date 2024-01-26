@@ -2,7 +2,7 @@ import { checkAuthLoader } from '../../utils/http-utils';
 import { boxActions } from './box-slice';
 import { authActions } from './auth-slice';
 import { uiActions } from './ui-slice';
-
+import { getDateFromTime } from '../../utils/time-utils';
 import { getCsrfToken } from '../../utils/http-utils';
 export const login = (email, password) => {
 
@@ -79,13 +79,24 @@ export const logout = () => {
         const responseBody = await response.json();
         throw new Error(responseBody.message || 'Could not fetch auth data!');
       }
+
+      return response.json();
+
     };
 
 
     try {
 
       const authData = await fetchData();
-      dispatch(authActions.logout(authData || []));
+      dispatch(authActions.logout([]));
+
+      dispatch(
+        uiActions.showNotification({
+          status: 'success',
+          title: 'Success!',
+          message: authData.message || 'You have logged out!',
+        })
+      );
 
     } catch (error) {
 

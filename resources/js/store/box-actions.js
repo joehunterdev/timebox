@@ -22,18 +22,16 @@ export const readBoxData = (date) => {
 
             if (response.status !== 200) {
                 const responseBody = await response.json();
-                throw new Error(responseBody.message ||'Could not fetch box data!');
-            }
-
-            const data = await response.json();
-
-            return data;
+                throw new Error(responseBody.message || 'Could not fetch box data!');
+            }          
+             const data = await response.json();
+             return data;
         };
 
         try {
 
             const boxData = await fetchData();
-
+ 
             dispatch(boxActions.adjustStartTimes());
 
             //Merge fresh data where time is the same
@@ -54,12 +52,12 @@ export const readBoxData = (date) => {
         } catch (error) {
             dispatch(
                 uiActions.showNotification({
-                  status: 'error',
-                  title: 'Error!',
-                  message: error.message || 'Couldnt fetch boxes !',
+                    status: 'error',
+                    title: 'Error!',
+                    message: error.message || 'Couldnt fetch boxes !',
                 })
-              );
-  
+            );
+
 
         }
     };
@@ -87,10 +85,11 @@ export const createBoxData = (box) => {
                     body: JSON.stringify(box),
                 }
             );
-            
+
             if (!response.ok) {
                 const responseBody = await response.json();
-                throw new Error(responseBody.message ||'Could not create box data!');            }
+                throw new Error(responseBody.message || 'Could not create box data!');
+            }
 
 
             const data = await response.json();
@@ -110,11 +109,11 @@ export const createBoxData = (box) => {
 
             dispatch(
                 uiActions.showNotification({
-                  status: 'error',
-                  title: 'Error!',
-                  message: error.message || 'Couldnt fetch boxes !',
+                    status: 'error',
+                    title: 'Error!',
+                    message: error.message || 'Couldnt fetch boxes !',
                 })
-              );
+            );
         }
     };
 }
@@ -141,7 +140,8 @@ export const updateBoxData = (box) => {
             if (!response.ok) {
 
                 const responseBody = await response.json();
-                throw new Error(responseBody.message ||'Could not update box data!');            }
+                throw new Error(responseBody.message || 'Could not update box data!');
+            }
         };
 
         try {
@@ -161,11 +161,11 @@ export const updateBoxData = (box) => {
 
             dispatch(
                 uiActions.showNotification({
-                  status: 'error',
-                  title: 'Error!',
-                  message: error.message || 'Couldnt fetch boxes !',
+                    status: 'error',
+                    title: 'Error!',
+                    message: error.message || 'Couldnt fetch boxes !',
                 })
-              );
+            );
         }
     };
 }
@@ -185,14 +185,15 @@ export const deleteBoxData = (box) => {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`  
+                        'Authorization': `Bearer ${token}`
                     },
                 }
             );
 
             if (!response.ok) {
                 const responseBody = await response.json();
-                throw new Error(responseBody.message ||'Could not delete box data!');            }
+                throw new Error(responseBody.message || 'Could not delete box data!');
+            }
         };
 
         try {
@@ -210,11 +211,11 @@ export const deleteBoxData = (box) => {
 
             dispatch(
                 uiActions.showNotification({
-                  status: 'error',
-                  title: 'Error!',
-                  message: error.message || 'Couldnt delete boxes !',
+                    status: 'error',
+                    title: 'Error!',
+                    message: error.message || 'Couldnt delete boxes !',
                 })
-              );
+            );
         }
     };
 }

@@ -1,0 +1,79 @@
+/*Layout*/
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.flex-container > div {
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+}
+
+.box-card {
+    padding: 20px;
+    margin: 20px;
+    font-size: 30px;
+    border: 1px solid #000000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    min-height: 120px;
+}
+
+.placeholder {
+    padding: 20px;
+    margin: 20px;
+    /* 
+        font-size: 30px;
+        border: 1px solid #000000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    */
+    min-height: 120px;
+}
+
+.box-card-30{
+    min-height: 100px;
+}
+.box-card-60{
+    min-height: 530px;
+}
+.box-card-90{
+    min-height: 840px;
+}
+.box-card-120{
+    min-height: 1160px;
+}
+.box-card-180{
+    min-height: 1780px; 
+}
+.box-card-240{
+    min-height: 2390px;
+}
+ 
+
+.bkg-green {
+    background-color: rgba(0, 220, 0, 0.1);
+}
+
+.bkg-blue {
+    background-color: rgba(0, 0, 220, 0.1);
+}
+
+.bkg-red {
+    background-color: rgba(220, 0, 0, 0.1);
+}
+
+.centered-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.p-4 {
+    padding: 4px;
+}
+.m-4 {
+    margin: 4px;
+}
+

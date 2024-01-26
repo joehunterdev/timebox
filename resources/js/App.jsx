@@ -17,6 +17,7 @@ import ProfilePage from "./Components/Pages/ProfilePage";
 import NotificationModal from "./Components/Layout/NotificationModal";
 import StatusHandler from "./Components/Layout/StatusHandler";
 import ResetPassword from "./Components/Auth/ResetPassword";
+// import DemoPage from "./Components/Pages/DemoPage";
 const App = () => {
     return (
         <Provider store={store}>
@@ -27,14 +28,6 @@ const App = () => {
     );
 };
 
-// const PrivateRoute = ({ element, ...rest }) => {
-//     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-//     <Route
-//         path={path}
-//         element={isAuthenticated ? props.element : <Navigate to="/auth" />}
-//         {...props}
-//     />;
-// };
 
 const AppContent = () => {
     const navigate = useNavigate();
@@ -44,9 +37,10 @@ const AppContent = () => {
     useEffect(() => {
         if (
             !isAuthenticated &&
-            (location.pathname === "/profile" || location.pathname === "/")
+            (location.pathname === "/profile" ) // || location.pathname === "/" 
         ) {
             navigate("/auth");
+
         } else if (isAuthenticated && location.pathname === "/auth") {
             navigate("/");
         }
@@ -65,6 +59,7 @@ const AppContent = () => {
             <main className="container-fluid bg-light-subtle">
                 <Routes>
                     <Route path="/auth" element={<AuthPage />} />
+                    {/* <Route path="/demo" element={<DemoPage />} /> */}
                     <Route path="/reset-password" element={<ResetPassword />} />
                     <Route path="/" element={<BoxApp />} />
                     <Route path="/profile" element={<ProfilePage />} />

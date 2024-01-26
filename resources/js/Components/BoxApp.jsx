@@ -10,15 +10,16 @@ import { readBoxData } from "../store/box-actions";
 const BoxApp = () => {
     const dispatch = useDispatch();
     const selectedDate = useSelector((state) => state.stack.selectedDate);
-
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     useEffect(() => {
+        console.log("BoxApp: useEffect: isAuthenticated: ", isAuthenticated);
         dispatch(
             boxActions.initPlaceholders({
                 nHours: 8,
                 startDateTime: selectedDate,
             })
         );
-
+        console.log("BoxApp: useEffect: selectedDate: ", selectedDate);
         dispatch(readBoxData(selectedDate));
     }, [selectedDate]);
 
