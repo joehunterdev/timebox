@@ -9,7 +9,6 @@ const AuthPage = () => {
     const [isLogin, setIsLogin] = useState(true); // Add this line
     const handleSubmit = async (e) => {
         const form = e.target;
-
         const formData = new FormData(e.target);
         e.preventDefault();
         if (isLogin) {

@@ -16,6 +16,10 @@ use Illuminate\Auth\Events\Verified;
 |
 */
 
+Route::get('/about', function () {
+    return view('about');
+});
+
 //Verify email public
 Route::get('/email/verify', function () {
     return redirect('/auth?status=reset_password_link_sent');

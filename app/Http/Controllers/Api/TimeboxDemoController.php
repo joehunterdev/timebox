@@ -41,12 +41,14 @@ class TimeboxDemoController extends Controller
         $start = \Carbon\Carbon::parse($start)->setTime(0, 0, 0);
         $timeFormat = 'Y-m-d\TH:i';
         $timeboxes = [
-            ['id' =>  1, 'text' => 'Meditate', 'duration' => 30, "status" => "done", "start" => $start->copy()->setTime(date("H"), 0, 0)->format($timeFormat)],
-            ['id' =>  2, 'text' => 'Study: Js Patterns', 'duration' => 60, "status" => "todo", "start" => $start->copy()->setTime(date("H") + 1, 30, 0)->format($timeFormat)],
-            ['id' =>  4, 'text' => 'Excercise', 'duration' => 30, "status" => "done", "start" => $start->copy()->setTime(date("H") + 2, 30, 0)->format($timeFormat)],
-            ['id' =>  5, 'text' => 'Make Dinner', 'duration' => 30, "status" => "doing", "start" => $start->copy()->setTime(date("H") + 4, 30, 0)->format($timeFormat)],
-            ['id' =>  6, 'text' => 'Deep Work', 'duration' => 180, "status" => "doing", "start" => $start->copy()->setTime(date("H") + 5, 30, 0)->format($timeFormat)],
-            ['id' =>  3, 'text' =>  'Meditate', 'duration' => 30, "status" => "todo", "start" => $start->copy()->setTime(date("H") + 7, 00, 0)->format($timeFormat)]
+            ['id' =>  1, 'text' => '🧘‍♂️ Meditate', 'duration' => 30, "status" => "done", "start" => $start->copy()->setTime(date("H"), 0, 0)->format($timeFormat)],
+            ['id' =>  2, 'text' => '📚 Study: JS Patterns', 'duration' => 60, "status" => "todo", "start" => $start->copy()->setTime(date("H") + 1, 30, 0)->format($timeFormat)],
+            ['id' =>  3, 'text' =>  '🧘‍♂️ Meditate', 'duration' => 30, "status" => "todo", "start" => $start->copy()->setTime(date("H") + 7, 00, 0)->format($timeFormat)],
+            ['id' =>  4, 'text' => '🏋️‍♂️ Exercise', 'duration' => 30, "status" => "done", "start" => $start->copy()->setTime(date("H") + 2, 30, 0)->format($timeFormat)],
+            ['id' =>  5, 'text' => '🍽️ Make Dinner', 'duration' => 30, "status" => "doing", "start" => $start->copy()->setTime(date("H") + 4, 30, 0)->format($timeFormat)],
+            ['id' =>  6, 'text' => '💼 Deep Work', 'duration' => 180, "status" => "doing", "start" => $start->copy()->setTime(date("H") + 5, 30, 0)->format($timeFormat)],
+            ['id' =>  7, 'text' => '🚶‍♂️ Take a Walk', 'duration' => 45, "status" => "todo", "start" => $start->copy()->setTime(date("H") + 3, 0, 0)->format($timeFormat)],
+            ['id' =>  8, 'text' => '🎨 Paint', 'duration' => 60, "status" => "todo", "start" => $start->copy()->setTime(date("H") + 6, 0, 0)->format($timeFormat)],
 
         ];
 

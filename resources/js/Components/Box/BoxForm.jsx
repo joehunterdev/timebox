@@ -91,13 +91,13 @@ const BoxForm = ({
                         name="text"
                         defaultValue={item.text}
                         maxLength="400"
-                        pattern="[A-Za-z0-9\s.,!?]*"
+                        pattern="/^[A-Za-z0-9\s\p{Emoji}\.,!?;:'\-]*$/u"
                         title="Only alphanumeric characters, spaces, and basic punctuation are allowed."
                         required
                         onChange={(e) => {
-                            const pattern = /^[A-Za-z0-9\s.,!?]*$/;
+                            const pattern = /^[A-Za-z0-9\s\p{Emoji}\.,!?;:'\-]*$/u;
                             const newValue = e.target.value.replace(
-                                /<\/?[^>]+(>|$)/g,
+                                /^[A-Za-z0-9\s\p{Emoji}\.,!?]*$/u,
                                 ""
                             );
                             if (!pattern.test(newValue)) {

@@ -19,7 +19,7 @@ const BoxApp = () => {
                 startDateTime: selectedDate,
             })
         );
-        console.log("BoxApp: useEffect: selectedDate: ", selectedDate);
+ 
         dispatch(readBoxData(selectedDate));
     }, [selectedDate]);
 
