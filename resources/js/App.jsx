@@ -176,7 +176,7 @@ const AppContent = () => {
     }, [isAuthenticated, navigate]);
 
     useEffect(() => {
-        if (isAuthenticated) return;
+        if (isAuthenticated || location.pathname !== '/') return;
         // Dispatch a notification when the component is first mounted
         dispatch(
             uiActions.showNotification({

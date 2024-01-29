@@ -12,7 +12,6 @@ const BoxApp = () => {
     const selectedDate = useSelector((state) => state.stack.selectedDate);
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     useEffect(() => {
-        console.log("BoxApp: useEffect: isAuthenticated: ", isAuthenticated);
         dispatch(
             boxActions.initPlaceholders({
                 nHours: 8,

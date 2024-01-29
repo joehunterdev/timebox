@@ -23,6 +23,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
+    <meta name="robots" content="index, follow">
 </head>
 
 <body>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -8,7 +9,7 @@ use App\Http\Controllers\Api\TimeboxController;
 use App\Http\Controllers\Api\TimeboxDemoController;
 use App\Models\Timebox;
 use Illuminate\Support\Facades\Log;
-
+ 
 class TimeboxProxyController extends Controller
 {
     public function index(Request $request, $start = "")
@@ -18,7 +19,6 @@ class TimeboxProxyController extends Controller
 
             Log::channel("api")->error("Proxy Index authed");
             $controller = resolve(TimeboxController::class);
-
         } else {
             Log::channel("api")->error("Proxy not authed");
 
@@ -38,28 +38,25 @@ class TimeboxProxyController extends Controller
         return $controller->store($request);
     }
 
-    public function show(Request $request, Timebox $timebox)
+
+    public function update(Request $request, $timebox)
     {
+        $id = $timebox instanceof Timebox ? $timebox : (int) $timebox;
+
         if (Auth::check()) {
             $controller = resolve(TimeboxController::class);
+            return $controller->update($request, $id);
+
         } else {
             $controller = resolve(TimeboxDemoController::class);
+            return $controller->update($request, $id);
+
         }
-        return $controller->show($request, $timebox);
     }
 
-    public function update(Request $request, Timebox $timebox)
+    public function destroy($timebox)
     {
-        if (Auth::check()) {
-            $controller = resolve(TimeboxController::class);
-        } else {
-            $controller = resolve(TimeboxDemoController::class);
-        }
-        return $controller->update($request, $timebox);
-    }
-
-    public function destroy(Request $request, Timebox $timebox)
-    {
+        $id = $timebox instanceof Timebox ? $timebox : (int) $timebox;
         if (Auth::check()) {
             $controller = resolve(TimeboxController::class);
         } else {

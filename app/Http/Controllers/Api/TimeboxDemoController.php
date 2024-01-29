@@ -47,7 +47,7 @@ class TimeboxDemoController extends Controller
             ['id' =>  4, 'text' => '🏋️‍♂️ Exercise', 'duration' => 30, "status" => "done", "start" => $start->copy()->setTime(date("H") + 2, 30, 0)->format($timeFormat)],
             ['id' =>  5, 'text' => '🍽️ Make Dinner', 'duration' => 30, "status" => "doing", "start" => $start->copy()->setTime(date("H") + 4, 30, 0)->format($timeFormat)],
             ['id' =>  6, 'text' => '💼 Deep Work', 'duration' => 180, "status" => "doing", "start" => $start->copy()->setTime(date("H") + 5, 30, 0)->format($timeFormat)],
-            ['id' =>  7, 'text' => '🚶‍♂️ Take a Walk', 'duration' => 45, "status" => "todo", "start" => $start->copy()->setTime(date("H") + 3, 0, 0)->format($timeFormat)],
+            ['id' =>  7, 'text' => '🚶‍♂️ Take a Walk', 'duration' => 40, "status" => "todo", "start" => $start->copy()->setTime(date("H") + 3, 0, 0)->format($timeFormat)],
             ['id' =>  8, 'text' => '🎨 Paint', 'duration' => 60, "status" => "todo", "start" => $start->copy()->setTime(date("H") + 6, 0, 0)->format($timeFormat)],
 
         ];
@@ -71,7 +71,7 @@ class TimeboxDemoController extends Controller
             } else {
                 $nextId = 1;
             }
-            $nextId = (string) $nextId;
+            $nextId = (int) $nextId;
 
             // Mock the Timebox creation
             $timebox = [
@@ -82,6 +82,8 @@ class TimeboxDemoController extends Controller
                 'start' => $request->input('start'),
             ];
 
+            Log::channel("api")->info("store: " . print_r($timebox, true)); 
+
             // Add the new timebox to the array
             $timeboxes[] = $timebox;
 
@@ -90,6 +92,7 @@ class TimeboxDemoController extends Controller
 
             // Return the new timebox
             return response()->json($timebox, 201);
+
         } catch (\Exception $e) {
 
             // Log::channel("api")->error("Error in store method: " . $e->getMessage());
@@ -114,7 +117,7 @@ class TimeboxDemoController extends Controller
         // Retrieve the timeboxes from the session
         $timeboxes = session()->get('timeboxes', []);
 
-        //Log::channel("api")->info("update get ses: " . print_r($timeboxes, true));
+        Log::channel("api")->info("update get ses: " . print_r($timeboxes, true));
 
         // Find the index of the timebox with the given ID
         $index = array_search($updatedTimebox['id'], array_column($timeboxes, 'id'));
@@ -126,7 +129,7 @@ class TimeboxDemoController extends Controller
 
         // Store the updated timeboxes back in the session
         session()->put('timeboxes', $timeboxes);
-        //Log::channel("api")->info("update put ses: " . print_r($timeboxes, true));
+        Log::channel("api")->info("update put ses: " . print_r($timeboxes, true));
         return response()->json($updatedTimebox, 200);
     }
 
