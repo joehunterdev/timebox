@@ -21,6 +21,7 @@ const boxSlice = createSlice({
 
 
         initPlaceholders(state, action) {
+            state.lastTotalToRemove = {};
             state.boxes = Array.from({ length: action.payload.nHours * 2 }, (_, index) => {
                 return getPlaceholder(`init-${index}`, calculateNewStartTime(action.payload.startDateTime, index))
             });
@@ -41,6 +42,7 @@ const boxSlice = createSlice({
 
         //Find a box by start and replace it by its start time
         mergeBoxesByStartTime(state, action) {
+
             state.boxes = state.boxes.map(placeholder => {
                 const matchingBox = findMatchingBox(action.payload.boxes, placeholder);
                 return matchingBox ? matchingBox : placeholder;
@@ -68,8 +70,7 @@ const boxSlice = createSlice({
         managePlaceholders(state) {
 
             const currentDay = getDateFromTime(state.selectedDate); // Replace this with your function to get the current day
-
-
+ 
             // Calculate the number of boxes to remove based on the total duration
             const boxesToRemove = getTotalToRemove(state.boxes);
 
@@ -113,12 +114,12 @@ const boxSlice = createSlice({
                 }
             }
         },
-        getBoxes(state, action) {
+        // getBoxes(state, action) {
 
-            if (action.payload) {
-                state.boxes = action.payload.boxes;
-            }
-        },
+        //     if (action.payload) {
+        //         state.boxes = action.payload.boxes;
+        //     }
+        // },
 
         addBox(state, action) {
             state.boxes[action.payload.order] = action.payload;

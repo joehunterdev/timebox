@@ -42,11 +42,13 @@ export const login = (email, password) => {
     try {
 
       const authData = await fetchData();
+
       dispatch(authActions.login(authData || []));
 
     } catch (error) {
 
       console.log("error", error);
+
       dispatch(
         uiActions.showNotification({
           status: 'error',
@@ -229,8 +231,7 @@ export const forgotPassword = (email) => {
       );
     } catch (error) {
 
-      console.log("error", error);
-      dispatch(
+       dispatch(
         uiActions.showNotification({
           status: 'error',
           title: 'Error!',

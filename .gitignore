@@ -29,3 +29,7 @@ composer.lock
 artisan
  
 public/php_errorlog
+.env.local
+.env.prod
+public/mix-manifest.json
+ 

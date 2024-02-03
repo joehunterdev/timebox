@@ -270,7 +270,7 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
 
             -   list group
             -   [x] Step 1: User research. Todo lists / Calendars / Jira /
- 
+
             -   [x] Step 3: Wireframing.
 
         -   [] 15 / Placeholders mins
@@ -319,7 +319,8 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
     -   To enable extensions, verify that they are enabled in your .ini files:
         -   Enable fileinfo
 -   [x] peer vite@"^3.0.0" from @vitejs/plugin-react@2.2.0 - npm install vite@3
-
+-   [x] Multiple boxes rendering after login
+    -   Needed to reset last removed from state
 -   [ ] There is a strictmode fix !! see original logrocket blog  
          [Adding Drag and Drop Functionality with React Beautiful DND](https://blog.logrocket.com/adding-drag-and-drop-functionality-with-react-beautiful-dnd/)
 

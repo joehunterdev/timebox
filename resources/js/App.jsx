@@ -29,8 +29,8 @@ const AppContent = () => {
     const navigate = useNavigate();
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const notification = useSelector((state) => state.ui.notification);
-
     useEffect(() => {
+
         if (
             !isAuthenticated &&
             location.pathname === "/profile" && location.pathname !== "/about" 

@@ -22,7 +22,7 @@ function DailyList() {
         const newBoxes = Array.from(boxes);
         const [draggedBox] = newBoxes.splice(result.source.index, 1);
         newBoxes.splice(result.destination.index, 0, draggedBox);
-
+        // dispatch(boxActions.clearBoxes());
         dispatch(boxActions.replaceBoxes({ boxes: newBoxes || [] }));
 
         newBoxes.forEach((box, index) => {
@@ -50,6 +50,7 @@ function DailyList() {
         });
     };
 
+
     return (
         <DragDropContext onDragEnd={handleDragEnd}>
             <Droppable droppableId="droppable">
@@ -59,7 +60,7 @@ function DailyList() {
                             <Draggable
                                 key={item.id}
                                 draggableId={item.id.toString()}
-                                                                // draggableId={
+                               // draggableId={
                                 //     item && item.id
                                 //         ? item.id.toString()
                                 //         : Math.random().toString()

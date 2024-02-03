@@ -31,8 +31,7 @@ export const readBoxData = (date) => {
         try {
 
             const boxData = await fetchData();
- 
-            dispatch(boxActions.adjustStartTimes());
+             dispatch(boxActions.adjustStartTimes());
 
             //Merge fresh data where time is the same
             dispatch(
@@ -42,13 +41,12 @@ export const readBoxData = (date) => {
             );
 
 
-            dispatch(
+            dispatch(   
                 boxActions.managePlaceholders({
-                    boxes: boxData || []
+                    boxes: boxData 
                 }));
-
-
-
+            
+ 
         } catch (error) {
             dispatch(
                 uiActions.showNotification({
@@ -91,6 +89,7 @@ export const createBoxData = (box) => {
                 throw new Error(responseBody.message || 'Could not create box data!');
             }
 
+            c
 
             const data = await response.json();
             return data.id; // Return the id
@@ -104,7 +103,7 @@ export const createBoxData = (box) => {
                 }));
             dispatch(boxActions.managePlaceholders());
             dispatch(boxActions.adjustStartTimes());
-
+            
         } catch (error) {
 
             dispatch(
