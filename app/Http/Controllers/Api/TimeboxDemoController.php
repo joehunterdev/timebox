@@ -16,10 +16,7 @@ class TimeboxDemoController extends Controller
 
     public function index($start = "")
     {
-        Log::channel("api")->error("Demo Index");
-        $isAuthenticated = \Illuminate\Support\Facades\Auth::check();
-        \Illuminate\Support\Facades\Log::channel("api")->info('Authentication status: ' . ($isAuthenticated ? 'Authenticated' : 'Not authenticated'));
-
+     
         try {
             $timeboxes = session()->get('timeboxes', []);
 
@@ -117,7 +114,7 @@ class TimeboxDemoController extends Controller
         // Retrieve the timeboxes from the session
         $timeboxes = session()->get('timeboxes', []);
 
-        Log::channel("api")->info("update get ses: " . print_r($timeboxes, true));
+      //  Log::channel("api")->info("update get ses: " . print_r($timeboxes, true));
 
         // Find the index of the timebox with the given ID
         $index = array_search($updatedTimebox['id'], array_column($timeboxes, 'id'));
@@ -129,7 +126,7 @@ class TimeboxDemoController extends Controller
 
         // Store the updated timeboxes back in the session
         session()->put('timeboxes', $timeboxes);
-        Log::channel("api")->info("update put ses: " . print_r($timeboxes, true));
+       // Log::channel("api")->info("update put ses: " . print_r($timeboxes, true));
         return response()->json($updatedTimebox, 200);
     }
 

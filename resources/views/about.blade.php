@@ -39,14 +39,14 @@
                 <hr>
 
                 <h2><i class="fas opacity-75 fa-layer-group"></i>Stack</h2>
-                <ul class="d-flex flex-row list-unstyled align-items-center justify-content-between mx-2">
+                <ul class="d-flex flex-row list-unstyled mt-2 align-items-center justify-content-between mx-2">
                     <li><i class="fab fa-react fa-2x" style="color: rgb(97, 219, 251);"></i> React</li>
                     <li><i class="fas fa-undo-alt fa-2x" style="color: rgb(118, 74, 188);"></i> Redux</li>
                     <li><i class="fab fa-laravel fa-2x" style="color: rgb(255, 45, 32);"></i> Laravel</li>
                 </ul>
                 <hr>
                 <h2><i class="fas opacity-75 fa-tasks"></i> Features</h2>
-                <ul class="list-unstyled">
+                <ul class="list-unstyled ml-4 pl-4">
                     <li><i class="fas opacity-75 fa-pencil-alt"></i> Drag and Drop: Easily organize your tasks with a user-friendly interface.</li>
                     <li><i class="fas opacity-75 fa-sun"></i> Time Management: Set specific time periods for tasks to improve productivity.</li>
                     <li><i class="fas opacity-75 fa-puzzle-piece"></i> Task Prioritization: Prioritize your tasks.</li>

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +17,24 @@ use Illuminate\Auth\Events\Verified;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//To enable the client side routing
+// Route::get('/send', function () {
+
+//     $details = [
+//         'title' => 'Mail from timebox.com',
+//         'body' => 'This is for testing email using smtp'
+//     ];
+
+
+
+//     try {
+//         Mail::to('joe.hunter.dev@gmail.com')->send(new TestMail($details));
+//         return "Email sent";
+//     } catch (\Exception $e) {
+//         dd($e);
+//     }
+// });
 
 Route::get('/about', function () {
     return view('about');
@@ -51,8 +71,6 @@ Route::get('/email/verify/{id}/{hash}', function (Request $request, $id, $hash) 
 Route::get('/{any}', function () {
     return view('app');
 })->where('any', '.*');
- 
-
  
 
 //Static Mockup

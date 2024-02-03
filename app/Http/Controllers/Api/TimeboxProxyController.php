@@ -14,14 +14,11 @@ class TimeboxProxyController extends Controller
 {
     public function index(Request $request, $start = "")
     {
-        //Auth isnot enough here
+       
         if ($request->user()) {
 
-            Log::channel("api")->error("Proxy Index authed");
             $controller = resolve(TimeboxController::class);
         } else {
-            Log::channel("api")->error("Proxy not authed");
-
             $controller = resolve(TimeboxDemoController::class);
         }
 
@@ -41,11 +38,12 @@ class TimeboxProxyController extends Controller
 
     public function update(Request $request, $timebox)
     {
-        $id = $timebox instanceof Timebox ? $timebox : (int) $timebox;
+        $id = $timebox instanceof Timebox ? $timebox->id : (int) $timebox;
 
         if (Auth::check()) {
             $controller = resolve(TimeboxController::class);
-            return $controller->update($request, $id);
+            $timebox = Timebox::find($id);
+            return $controller->update($request, $timebox);
 
         } else {
             $controller = resolve(TimeboxDemoController::class);
