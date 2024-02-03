@@ -88,9 +88,7 @@ export const createBoxData = (box) => {
                 const responseBody = await response.json();
                 throw new Error(responseBody.message || 'Could not create box data!');
             }
-
-            c
-
+            
             const data = await response.json();
             return data.id; // Return the id
         };

@@ -9,12 +9,12 @@ use App\Http\Controllers\Api\TimeboxController;
 use App\Http\Controllers\Api\TimeboxDemoController;
 use App\Models\Timebox;
 use Illuminate\Support\Facades\Log;
- 
+
 class TimeboxProxyController extends Controller
 {
     public function index(Request $request, $start = "")
     {
-       
+
         if ($request->user()) {
 
             $controller = resolve(TimeboxController::class);
@@ -44,11 +44,9 @@ class TimeboxProxyController extends Controller
             $controller = resolve(TimeboxController::class);
             $timebox = Timebox::find($id);
             return $controller->update($request, $timebox);
-
         } else {
             $controller = resolve(TimeboxDemoController::class);
             return $controller->update($request, $id);
-
         }
     }
 
@@ -57,12 +55,15 @@ class TimeboxProxyController extends Controller
         $id = $timebox instanceof Timebox ? $timebox : (int) $timebox;
         if (Auth::check()) {
             $controller = resolve(TimeboxController::class);
+            $timebox = Timebox::find($id);
+            return $controller->destroy($timebox);
         } else {
             $controller = resolve(TimeboxDemoController::class);
-        }
 
-        return $controller->destroy($timebox);
+            return $controller->destroy($timebox);
+        }
     }
+
 
 
     // Repeat for other methods as necessary...
