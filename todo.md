@@ -1,4 +1,4 @@
-# V1.7.7:
+# V2.0.0:
 
 A drag and drop todo app with visually adjustable time slots to fill an 8 hour day.
 
@@ -46,11 +46,11 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
         -   [x] Signup
 
     -   ## Header
-            - [ ] Login button when logged out
+            - [x] Login button when logged out
               - [x] Icons profile
               - [x] Icons logout
-              - [ ] Center calendar icon or add drop down menu on right icon
-            - [ ] Home icon logic
+              - [x] Center calendar icon or add drop down menu on right icon
+            - [x] Home icon logic
     -   ## Box App
 
         -   BUG [x] Check and fix, Item id hack for prod
@@ -59,7 +59,7 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
 
         -   [x] Route / as TimeboxDemoController if not authed
             -   used proxy controller but better use middleware
-        -   [] Route
+        -   [x] Route
         -   [x] First time welcome and notification
 
     -   ## New Box
@@ -270,9 +270,7 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
 
             -   list group
             -   [x] Step 1: User research. Todo lists / Calendars / Jira /
-            -   [] Step 2: Define objectives.
-                -   Sortable
-                -   Adjustable time slots
+ 
             -   [x] Step 3: Wireframing.
 
         -   [] 15 / Placeholders mins
@@ -330,6 +328,5 @@ A drag and drop todo app with visually adjustable time slots to fill an 8 hour d
 -   [x] Core Concept
 -   [x] 2.0 Features
 -   [x] Demo Web
--   [] User funcionality
--   [] and full launch
+-   [x] User funcionality and full launch
 -   [] Testing and user feedback
